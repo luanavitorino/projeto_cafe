@@ -1,5 +1,6 @@
 import pandas as pd
 import statistics
+import matplotlib.pyplot as plt
 
 df = pd.read_csv('cafepython.csv', delimiter=';')
 
@@ -55,3 +56,20 @@ print(f"Moda de Impedimento por Cardiopatia ou Academia: {moda_impedimento_consu
 print(f"\nMédia de Xícaras de Café por dia: {media_xicaras}")
 print(f"Mediana de Xícaras de Café por dia: {mediana_xicaras}")
 print(f"Moda de Xícaras de Café por dia: {moda_xicaras}")
+
+
+genero_counts = df['Gênero:'].value_counts()
+plt.figure(figsize=(6, 6))
+plt.pie(genero_counts, labels=genero_counts.index, autopct='%1.1f%%', startangle=140)
+plt.title('Distribuição de Gênero')
+plt.show()
+
+
+consumo_Cafe_counts = df['Você consome café? Se sim, prefere-o puro ou com leite?'].value_counts()
+plt.figure(figsize=(8, 6))
+plt.bar(consumo_Cafe_counts.index, consumo_Cafe_counts.values, color='teal')
+plt.title('Preferências de Consumo de Café')
+plt.xlabel('Tipo de Café')
+plt.ylabel('Número de Pessoas')
+plt.xticks(rotation=45)
+plt.show()
